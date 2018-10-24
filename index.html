@@ -41,15 +41,16 @@
 
 <h1>Simon</h1>
 <h2> Let's play!</h2>
+<h3> Score <span></span></h3>
 <div class="container">
 <div class="row">
-    <div class="box red 1"></div>
-    <div class="box blue 2"></div>
+    <div class="box red one"></div>
+    <div class="box blue two"></div>
 </div>
 
 <div class="row">
-    <div class="box green 3"></div>
-    <div class="box pink 4"></div>
+    <div class="box green three"></div>
+    <div class="box pink four"></div>
 </div></div>
 
 <!--JS-->
@@ -59,10 +60,12 @@
 
     //VARIABLES~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
     var colorsPicked = []; //keeps track of the colors that are picked
+    var boxes = [$(".one"), $(".two"), $(".three"), $(".four")]; // the boxes
     var pickColors = 1; // number of colors to be picked
     var currentColor = 0; //position in the colorsPicked array
     var score = 0; //self explanatory
     var status = $('h2'); //the header2 that displays current turn or whatever it does i dunno i'm tired
+    var scoreBar = $('span'); //where the score is displayed
     var playersTurn = false; //is is the player's turn? false is default
     var pass = true; //whether or not the player is right.
 
@@ -87,22 +90,40 @@
         }
     )
 
+    //when a color is chosen by the computer, do this...
+        function collectColor (box){
+        box.addClass("boxShow"); //show color
+        setTimeout(10, function (e) {
+           box.removeClass("boxShow"); //remove color
+        });
+        var array = [];
+        array.push(box); //add box to selected colors
+        return array;
+    }
+
     //player clicks a box, it checks to see if it's the right one. if yes, moves on to next box
     //if no, game over function returns whether or not they passed
 
+
+
     //STUFF HAPPENS~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-    randomNum(); //generate random number
-    //number of Box picked
-    //add box to colorsPicked
-    //add class boxShow
-    //wait, like, 10 ms,
-    //remove class boxShow
-    //repeat for pickColors
-    //then, set playersTurn to true
-    //player clicks boxes
-    //if they passed, add a score and start all over
+   /*TODO:
+    generate random number
+    number of Box picked
+    add box to colorsPicked
+    add class boxShow
+    wait, like, 10 ms,
+    remove class boxShow
+    repeat for pickColors
+    then, set playersTurn to true
+    player clicks boxes
+    if they passed, add a score and start all over*/
     do {
+        for (var i = 0; i < pickColors; i++) {
+            var boxNum = randomNum() - 1;
+            colorsPicked = collectColor(boxes[boxNum]);
+        }
 
     } while (pass === true);
 
