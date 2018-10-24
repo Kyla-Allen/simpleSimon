@@ -39,6 +39,8 @@
 </head>
 <body>
 
+<h1>Simon</h1>
+<h2> Let's play!</h2>
 <div class="container">
 <div class="row">
     <div class="box red 1"></div>
@@ -55,25 +57,56 @@
 <script>
     "use strict";
 
-    //VARIABLES
+    //VARIABLES~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
     var colorsPicked = []; //keeps track of the colors that are picked
     var pickColors = 1; // number of colors to be picked
+    var currentColor = 0; //position in the colorsPicked array
+    var score = 0; //self explanatory
+    var status = $('h2'); //the header2 that displays current turn or whatever it does i dunno i'm tired
+    var playersTurn = false; //is is the player's turn? false is default
+    var pass = true; //whether or not the player is right.
 
-    //FUNCTIONS
+    //FUNCTIONS~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
     //generates a random number between 1 and 4
     function randomNum (){
         return Math.floor(Math.random() * 4) + 1;
     }
 
+    //hover effect added to boxes when playersTurn is true
+    $('.box').hover(
+        function (e) {
+            if (playersTurn === true){
+                $(this).css("opacity", "1");
+            }
+        },
+        function (e) {
+            if(playersTurn === true){
+                $(this).css("opacity","0.5");
+            }
+        }
+    )
 
-    //STUFF HAPPENS
+    //player clicks a box, it checks to see if it's the right one. if yes, moves on to next box
+    //if no, game over function returns whether or not they passed
+
+    //STUFF HAPPENS~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
     randomNum(); //generate random number
-        //number of Box picked
-        //add class boxShow
-        //wait, like, 10 ms,
-        //remove class boxShow
+    //number of Box picked
+    //add box to colorsPicked
+    //add class boxShow
+    //wait, like, 10 ms,
+    //remove class boxShow
+    //repeat for pickColors
+    //then, set playersTurn to true
+    //player clicks boxes
+    //if they passed, add a score and start all over
+    do {
+
+    } while (pass === true);
+
+
 
 
 
